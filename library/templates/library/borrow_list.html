@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Breadcubs Area Start Here -->
+    <div class="breadcrumbs-area">
+        <h3>Borrowed Books</h3>
+        <ul>
+            <li>
+                <a href="{% url 'accounts:dashboard' %}">Home</a>
+            </li>
+            <li>Borrowed Books</li>
+        </ul>
+    </div>
+    <!-- Breadcubs Area End Here -->
+    <!-- Student Table Area Start Here -->
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>All Borrowed Books Data</h3>
+                </div>
+                <div class="dropdown">
+                    <li>
+                        <a style="color: #fea801;" href="{% url 'library:borrow_new' %}">Add Borrowed Book</a>
+                    </li>
+                </div>
+            </div>
+            <form class="mg-b-20">
+                <div class="row gutters-8">
+                    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                    
+                    
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table display data-table text-nowrap">
+                    <thead>
+                        <tr>
+
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Book</th>
+                            <th>Date Borrowed</th>
+                            <th>Status</th>
+                            
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for borrowed_book in borrowed_books %}
+
+                        <tr>
+
+                            <td class="text-center">
+                                {% if borrowed_book.student.sex == 'Male' %}
+                                    <img src="{% static 'img/figure/student2.png' %}" alt="student">
+                                {% else %}
+                                    <img src="{% static 'img/figure/student3.png' %}" alt="student">
+                                {% endif %}
+                            </td>
+                            <td><a href="{% url 'students:student' borrowed_book.student.id %}" style="color: #646464;">{{borrowed_book.student.first_name}} {{borrowed_book.student.last_name}}</a></td>
+                            <td>{{borrowed_book.book}}</td>
+                            <td>{{borrowed_book.date_borrowed}}</td>
+                            <td>{{borrowed_book.status}}</td>
+                  
+                            <td>
+                                <a class="pr-3" href="{% url 'library:borrow_edit' borrowed_book.id %}">
+                                    <i class="fas fa-pencil-alt text-dark-pastel-green"></i>
+                                </a>
+                                
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

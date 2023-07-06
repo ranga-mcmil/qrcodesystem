@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Breadcubs Area Start Here -->
+    <div class="breadcrumbs-area">
+        <h3>Students</h3>
+        <ul>
+            <li>
+                <a href="{% url 'accounts:dashboard' %}">Home</a>
+            </li>
+            <li>All Students</li>
+        </ul>
+    </div>
+    <!-- Breadcubs Area End Here -->
+    <!-- Student Table Area Start Here -->
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>All Students Data</h3>
+                </div>
+                <div class="dropdown">
+                    <li>
+                        <a style="color: #fea801;" href="{% url 'students:new' %}">Add Student</a>
+                    </li>
+                </div>
+            </div>
+            <form class="mg-b-20">
+                <div class="row gutters-8">
+                    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                    
+                    
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table display data-table text-nowrap">
+                    <thead>
+                        <tr>
+
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Programme</th>
+                            <th>Level</th>
+                            <th>Address</th>
+                            <th>Date Of Birth</th>
+                            <th>E-mail</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+
+                        <tr>
+
+                            <td class="text-center">
+                                {% if student.sex == 'Male' %}
+                                    <img src="{% static 'img/figure/student2.png' %}" alt="student">
+                                {% else %}
+                                    <img src="{% static 'img/figure/student3.png' %}" alt="student">
+                                {% endif %}
+                            </td>
+                            <td><a href="{% url 'students:student' student.id %}" style="color: #646464;">{{student.first_name}} {{student.last_name}}</a></td>
+                            <td>{{student.sex}}</td>
+                            <td>{{student.programme}}</td>
+                            <td>{{student.level}}</td>
+                            <td>{{student.address}}</td>
+                            <td>{{student.date_of_birth}}</td>
+                            <td>{{student.email}}</td>
+                            <td>
+                                <a class="pr-3" href="{% url 'students:edit' student.id %}">
+                                    <i class="fas fa-pencil-alt text-dark-pastel-green"></i>
+                                </a>
+                                
+                                <a class="" href="{% url 'students:delete' student.id %}">
+                                    <i class="fas fa-trash-alt text-orange-red"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

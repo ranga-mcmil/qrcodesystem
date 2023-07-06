@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumbs-area">
+    <h3>Students</h3>
+    <ul>
+        <li>
+            <a href="{% url 'accounts:dashboard' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'students:students' %}">All Students</a>
+        </li>
+        <li>Student Details</li>
+    </ul>
+</div>
+<!-- Breadcubs Area End Here -->
+<!-- Student Details Area Start Here -->
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>About Me</h3>
+            </div>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                </div>
+            </div>
+        </div>
+        <div class="single-info-details">
+            <div class="item-img">
+                {% if student.sex == 'Male' %}
+                    <img src="{% static 'img/figure/parents.jpg' %}" alt="student">
+                {% else %}
+                    <img src="{% static 'img/figure/student1.jpg' %}" alt="student">
+                {% endif %}
+                
+            </div>
+            <div class="item-content">
+                <div class="header-inline item-header">
+                    <h3 class="text-dark-medium font-medium">{{student.first_name}} {{student.last_name}}</h3>
+                    <div class="header-elements">
+                        <ul>
+                            {% if user.department == 'Admin' %}
+                                <li><a href="{% url 'students:edit' student.id %}"><i class="far fa-edit"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="info-table table-responsive">
+                    <table class="table text-nowrap">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td class="font-medium text-dark-medium">{{student.first_name}} {{student.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Programme:</td>
+                                <td class="font-medium text-dark-medium">{{student.programme}} {{student.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                <td class="font-medium text-dark-medium">{{student.sex}}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Date Of Birth:</td>
+                                <td class="font-medium text-dark-medium">{{student.date_of_birth}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>E-mail:</td>
+                                <td class="font-medium text-dark-medium">{{student.email}}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Level:</td>
+                                <td class="font-medium text-dark-medium">{{student.level}}</td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td>Address:</td>
+                                <td class="font-medium text-dark-medium">{{student.address}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Library Books Borrowed:</td>
+                                <td class="font-medium text-dark-medium">{{borrowed_books}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Fees Balance:</td>
+                                <td class="font-medium text-dark-medium">$ {{student.balance}}</td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

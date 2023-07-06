@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+    <div class="breadcrumbs-area">
+        <h3>Admin Dashboard</h3>
+        <ul>
+            <li>
+                <a href="{% url 'accounts:dashboard' %}">Dashboard</a>
+            </li>
+            <li>Admin</li>
+        </ul>
+    </div>
+    <!-- Breadcubs Area End Here -->
+    <!-- Dashboard summery Start Here -->
+    <div class="row gutters-20">
+        <div class="col-xl-6 col-sm-6 col-12">
+            <div class="dashboard-summery-one mg-b-20">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div class="item-icon bg-light-green ">
+                            <i class="flaticon-classmates text-green"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="item-content">
+                            <div class="item-title">Students</div>
+                            <div class="item-number"><span class="counter" data-num="{{students}}">{{students}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-sm-6 col-12">
+            <div class="dashboard-summery-one mg-b-20">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div class="item-icon bg-light-blue">
+                            <i class="flaticon-multiple-users-silhouette text-blue"></i>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="item-content">
+                            <div class="item-title">Users</div>
+                            <div class="item-number"><span class="counter" data-num="{{users}}">{{users}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+{% endblock %} 

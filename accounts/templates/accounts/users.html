@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %} 
+
+    <!-- Breadcubs Area Start Here -->
+    <div class="breadcrumbs-area">
+        <h3>Users</h3>
+        <ul>
+            <li>
+                <a href="{% url 'accounts:dashboard' %}">Home</a>
+            </li>
+            <li>Users</li>
+        </ul>
+    </div>
+    <!-- Breadcubs Area End Here -->
+    <!-- Admit Form Area Start Here -->
+    
+
+    <div class="col-12-xxxl col-xl-12">
+        <div class="card account-settings-box height-auto">
+            <div class="card-body">
+                <div class="heading-layout1 mg-b-20">
+                    <div class="item-title">
+                        <h3>All Users</h3>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" 
+                        data-toggle="dropdown" aria-expanded="false">...</a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="all-user-box">
+                    <div class="media media-none--xs active">
+                        <div class="item-img">
+                            <img src="{% static 'img/figure/user3.jpg' %}" class="media-img-auto" alt="user">
+                        </div>
+                        <div class="media-body space-md">
+                            <h5 class="item-title">{{user.get_full_name}}</h5>
+                            <div class="item-subtitle">{{user.department}}</div>
+                        </div>
+                    </div>
+
+                    {% for account in users %}
+                        <div class="media media-none--xs ">
+                            <div class="item-img">
+                                <img src="{% static 'img/figure/user3.jpg' %}" class="media-img-auto" alt="user">
+                            </div>
+                            <div class="media-body space-md">
+                                <h5 class="item-title">{{account.get_full_name}}</h5>
+                                <div class="item-subtitle">{{account.department}}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %} 

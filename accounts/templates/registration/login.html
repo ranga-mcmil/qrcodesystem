@@ -1,0 +1,131 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+
+
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 21:52:13 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="{% static 'fonts/flaticon.css' %}">
+
+    <!-- Full Calender CSS -->
+    <link rel="stylesheet" href="{% static 'css/fullcalendar.min.css' %}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+    <!-- Modernize js -->
+    <script src="{% static 'js/modernizr-3.6.0.min.js' %}"></script>
+</head>
+
+<body>
+    <!-- Preloader Start Here -->
+    <div id="preloader"></div>
+    <!-- Preloader End Here -->
+    <!-- Login Page Start Here -->
+    <div class="login-page-wrap">
+        <div class="login-page-content">
+            <div class="login-box">
+                {% if form.errors %}
+                    {% include 'form_messages.html' with errors=form.errors %}
+                {% endif %}
+                {% include 'messages.html' %}
+
+                <div class="item-logo">
+                </div>
+                <form action="" method="post" class="login-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        {{form.username}}
+                        <i class="far fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        {{form.password}}
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between">
+                        <div class="form-">
+                            <label class="form-check-label">Don't have an account? <a href="{% url 'accounts:register' %}">Sign Up</a></label>
+                        </div>
+                        
+                    </div>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <button type="submit" class="login-btn">Sign In</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Page End Here -->
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+
+    <!-- jquery-->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Counterup Js -->
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+
+    <!-- Moment Js -->
+    <script src="{% static 'js/moment.min.js' %}"></script>
+
+    <!-- Waypoints Js -->
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+
+    <!-- Scroll Up Js -->
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+
+    <!-- Full Calender Js -->
+    <script src="{% static 'js/fullcalendar.min.js' %}"></script>
+
+    <!-- Chart Js -->
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+
+<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2023 21:52:15 GMT -->
+</html>
