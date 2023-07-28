@@ -52,58 +52,157 @@
                         </ul>
                     </div>
                 </div>
+
+                {% if user.department == 'Admin' %}
                 
-                <div class="info-table table-responsive">
-                    <table class="table text-nowrap">
-                        <tbody>
-                            <tr>
-                                <td>Name:</td>
-                                <td class="font-medium text-dark-medium">{{student.first_name}} {{student.last_name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Programme:</td>
-                                <td class="font-medium text-dark-medium">{{student.programme}} {{student.last_name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Gender:</td>
-                                <td class="font-medium text-dark-medium">{{student.sex}}</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>Date Of Birth:</td>
-                                <td class="font-medium text-dark-medium">{{student.date_of_birth}}</td>
-                            </tr>
+                    <div class="info-table table-responsive">
+                        <table class="table text-nowrap">
+                            <tbody>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td class="font-medium text-dark-medium">{{student.first_name}} {{student.last_name}}</td>
 
-                            <tr>
-                                <td>E-mail:</td>
-                                <td class="font-medium text-dark-medium">{{student.email}}</td>
-                            </tr>
-                            
-                            <tr>
-                                <td>Level:</td>
-                                <td class="font-medium text-dark-medium">{{student.level}}</td>
-                            </tr>
-                            
-                            
-                            <tr>
-                                <td>Address:</td>
-                                <td class="font-medium text-dark-medium">{{student.address}}</td>
-                            </tr>
+                                </tr>
+                                <tr>
+                                    <td>Programme:</td>
+                                    <td class="font-medium text-dark-medium">{{student.programme}} {{student.last_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Gender:</td>
+                                    <td class="font-medium text-dark-medium">{{student.sex}}</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Date Of Birth:</td>
+                                    <td class="font-medium text-dark-medium">{{student.date_of_birth}}</td>
+                                </tr>
 
-                            <tr>
-                                <td>Library Books Borrowed:</td>
-                                <td class="font-medium text-dark-medium">{{borrowed_books}}</td>
-                            </tr>
+                                <tr>
+                                    <td>E-mail:</td>
+                                    <td class="font-medium text-dark-medium">{{student.email}}</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Level:</td>
+                                    <td class="font-medium text-dark-medium">{{student.level}}</td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <td>Address:</td>
+                                    <td class="font-medium text-dark-medium">{{student.address}}</td>
+                                </tr>
 
-                            <tr>
-                                <td>Fees Balance:</td>
-                                <td class="font-medium text-dark-medium">$ {{student.balance}}</td>
-                            </tr>
-                            
-                            
-                        </tbody>
-                    </table>
-                </div>
+                                <tr>
+                                    <td>Library Books Borrowed:</td>
+                                    <td class="font-medium text-dark-medium">{{borrowed_books}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Fees Balance:</td>
+                                    <td class="font-medium text-dark-medium">$ {{student.balance}}</td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+                {% elif user.department == 'Gate' %}
+
+                    <div class="info-table table-responsive">
+                        <table class="table text-nowrap">
+                            <tbody>
+                                <tr>
+
+                                    <td class="font-medium text-dark-medium">Roll</td>
+                                    <td class="font-medium text-dark-medium">Arrival Time</td>
+                                    <td class="font-medium text-dark-medium">Departure Time</td>
+
+
+                                </tr>
+                                {% for log in logs %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{log.arrival}}</td>
+                                        <td>{{log.departure}}</td>
+
+                                    </tr>
+                                {% endfor %}
+
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+                {% elif user.department == 'Examinations' %}
+                    <div class="info-table table-responsive">
+                        <table class="table text-nowrap">
+                            <tbody>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td class="font-medium text-dark-medium">{{student.first_name}} {{student.last_name}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Programme:</td>
+                                    <td class="font-medium text-dark-medium">{{student.programme}} {{student.last_name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Fees Balance:</td>
+                                    <td class="font-medium text-dark-medium">$ {{student.balance}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Exam Status:</td>
+                                    <td class="font-medium text-dark-medium">
+                                        {% if student.balance < 1 %}
+                                            Elligible
+                                        {% else %}
+                                            Not Elligible To Write
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                {% elif user.department == 'Library' %}
+                    <div class="info-table table-responsive">
+                        <table class="table text-nowrap">
+                            <tbody>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td class="font-medium text-dark-medium">{{student.first_name}} {{student.last_name}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Programme:</td>
+                                    <td class="font-medium text-dark-medium">{{student.programme}} {{student.last_name}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Fees Balance:</td>
+                                    <td class="font-medium text-dark-medium">$ {{student.balance}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Library Books Borrowed:</td>
+                                    <td class="font-medium text-dark-medium">{{borrowed_books}}</td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+                {% endif %}
             </div>
         </div>
     </div>

@@ -11,5 +11,5 @@ urlpatterns = [
    path('new/', views.new, name='new'), 
    path('add_fees/', views.add_fees, name='add_fees'), 
    path('student_qr_code/<int:id>/', views.student_qr_code, name='student_qr_code'), 
-   
+   path('gate_logs/', views.gate_logs, name='gate_logs')   
 ]

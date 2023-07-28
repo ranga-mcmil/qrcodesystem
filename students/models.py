@@ -30,6 +30,13 @@ class Student(models.Model):
     status = models.CharField(max_length=50, choices=STATUS)
     level = models.CharField(max_length=10, choices=LEVEL)
     balance = models.DecimalField(default=0, decimal_places=2, max_digits=20)
+    onCampus = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+
+class GateLog(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="logs")
+    arrival = models.DateTimeField(null=True, blank=True)
+    departure = models.DateTimeField(null=True, blank=True)

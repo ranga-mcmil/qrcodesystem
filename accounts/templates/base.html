@@ -139,22 +139,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item sidebar-nav-item">
-                <a href="#" class="nav-link"><i class="flaticon-books"></i><span>Library</span></a>
-                <ul class="nav sub-group-menu">
-                  <li class="nav-item">
-                    <a href="{% url 'library:books' %}" class="nav-link"><i class="fas fa-angle-right"></i>Books</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{% url 'library:borrow_list' %}" class="nav-link"><i class="fas fa-angle-right"></i>Borrowed Books</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="{% url 'library:borrow_new' %}" class="nav-link"><i class="fas fa-angle-right"></i>New Borrow</a>
-                  </li>
-                </ul>
-              </li>
+              
 
               <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Users</span></a>
@@ -172,10 +157,39 @@
               </li>
             {% endif %}
 
+            
+
             <li class="nav-item">
               <a href="{% url 'accounts:scan_code' %}" class="nav-link"><i
                   class="flaticon-technological"></i><span>Scan QR Code</span></a>
             </li>
+
+            {% if user.department == 'Library' or user.department == 'Admin' %}
+              <li class="nav-item sidebar-nav-item">
+                <a href="#" class="nav-link"><i class="flaticon-books"></i><span>Library</span></a>
+                <ul class="nav sub-group-menu">
+                  <li class="nav-item">
+                    <a href="{% url 'library:books' %}" class="nav-link"><i class="fas fa-angle-right"></i>Books</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{% url 'library:borrow_list' %}" class="nav-link"><i class="fas fa-angle-right"></i>Borrowed Books</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{% url 'library:borrow_new' %}" class="nav-link"><i class="fas fa-angle-right"></i>New Borrow</a>
+                  </li>
+                </ul>
+              </li>
+            {% endif %}
+
+            {% if user.department == 'Gate' or user.department == 'Admin' %}
+              <li class="nav-item">
+                <a href="{% url 'students:gate_logs' %}" class="nav-link"><i
+                    class="flaticon-technological"></i><span>Gate Logs</span></a>
+              </li>
+            {% endif %}
+            
 
 
 

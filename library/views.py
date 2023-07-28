@@ -8,7 +8,7 @@ from django.contrib import messages
 # Create your views here.
 @login_required()
 def books(request):
-    if request.user.department != 'Admin':
+    if request.user.department != 'Admin' and request.user.department != 'Library':
         return redirect('accounts:scan_code')
         
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def books(request):
 
 @login_required()
 def borrow_list(request):
-    if request.user.department != 'Admin':
+    if request.user.department != 'Admin' and request.user.department != 'Library':
         return redirect('accounts:scan_code')
 
     borrowed_books = BookBorrowed.objects.all().order_by('-id')
@@ -46,7 +46,7 @@ def borrow_list(request):
 
 @login_required()
 def borrow_new(request):
-    if request.user.department != 'Admin':
+    if request.user.department != 'Admin' and request.user.department != 'Library':
         return redirect('accounts:scan_code')
 
     if request.method == 'POST':
@@ -68,7 +68,7 @@ def borrow_new(request):
 
 @login_required()
 def borrow_edit(request, id):
-    if request.user.department != 'Admin':
+    if request.user.department != 'Admin' and request.user.department != 'Library':
         return redirect('accounts:scan_code')
 
     book_borrowed = BookBorrowed.objects.get(id=id)

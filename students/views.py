@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Student
+from .models import Student, GateLog
 from .forms import StudentForm, AddFeesForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 import qrcode
+from django.utils import timezone
 
 
 # Create your views here.
@@ -27,9 +28,28 @@ def student(request, id):
     student = Student.objects.get(id=id)
     borrowed_books = student.borrowed.filter(status='Borrowed').count()
 
+    if request.user.department == 'Gate':
+        if not student.onCampus:
+            GateLog.objects.create(
+                student=student,
+                arrival=timezone.now()
+            )
+            student.onCampus = True
+            student.save()
+        else:
+            log = GateLog.objects.filter(student=student).order_by('-id').first()
+            log.departure = timezone.now()
+            log.save()
+            student.onCampus = False
+            student.save()
+    
+
+    logs = GateLog.objects.filter(student=student).order_by('-id')
+
     context = {
         'student': student,  
-        'borrowed_books': borrowed_books      
+        'borrowed_books': borrowed_books,
+        'logs': logs 
     }
     return render(request, 'students/student.html', context)
 
@@ -128,3 +148,12 @@ def student_qr_code(request, id):
 
     return render(request, 'students/student_qr_code.html', context)
 
+
+@login_required()
+def gate_logs(request):
+    logs = GateLog.objects.all().order_by('-id')
+
+    context = {
+        'logs': logs 
+    }
+    return render(request, 'students/gate_logs.html', context)

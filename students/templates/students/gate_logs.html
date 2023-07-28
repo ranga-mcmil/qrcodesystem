@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Breadcubs Area Start Here -->
+    <div class="breadcrumbs-area">
+        <h3>Gate Logs</h3>
+        <ul>
+            <li>
+                <a href="{% url 'accounts:dashboard' %}">Home</a>
+            </li>
+            <li>Gate Logs</li>
+        </ul>
+    </div>
+    <!-- Breadcubs Area End Here -->
+    <!-- Student Table Area Start Here -->
+    <div class="card height-auto">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>Gate Logs</h3>
+                </div>
+                <div class="dropdown">
+                    <li>
+                        <a style="color: #fea801;" href="{% url 'students:new' %}"></a>
+                    </li>
+                </div>
+            </div>
+            <form class="mg-b-20">
+                <div class="row gutters-8">
+                    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                        <input type="text" class="form-control">
+                    </div>
+                    
+                    
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table display data-table text-nowrap">
+                    <thead>
+                        <tr>
+
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Arrival Time</th>
+                            <th>Departure Time</th>
+                            
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
+
+                        <tr>
+
+                            <td class="text-center">
+                                {% if log.student.sex == 'Male' %}
+                                    <img src="{% static 'img/figure/student2.png' %}" alt="student">
+                                {% else %}
+                                    <img src="{% static 'img/figure/student3.png' %}" alt="student">
+                                {% endif %}
+                            </td>
+                            <td>{{log.student.first_name}} {{log.student.last_name}}</td>
+                            <td>{{log.arrival}}</td>
+                            <td>{{log.departure}}</td>
+      
+                            
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

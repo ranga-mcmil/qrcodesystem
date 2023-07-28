@@ -5,13 +5,14 @@ from django.utils.translation import gettext_lazy as _
 DEPARTMENT = (
     ("Library", "Library"),
     ("Gate", "Gate"),  
+    ("Examinations", "Examinations"),  
     ("Admin", "Admin"),  
 )
 
 # Create your models here.
 class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
-    department = models.CharField(max_length=10, choices=DEPARTMENT, default='Admin')
+    department = models.CharField(max_length=20, choices=DEPARTMENT, default='Admin')
 
     
     def __str__(self):
